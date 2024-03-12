@@ -1,0 +1,14 @@
+C:\Users\TGarcia\source\repos\programa\programa\bin\Debug\programa.exe.config
+C:\Users\TGarcia\source\repos\programa\programa\bin\Debug\programa.exe
+C:\Users\TGarcia\source\repos\programa\programa\bin\Debug\programa.pdb
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.csproj.AssemblyReference.cache
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.formArticulos.resources
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.formPrincipal.resources
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.Properties.Resources.resources
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.csproj.GenerateResource.cache
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.csproj.CoreCompileInputs.cache
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.exe
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.pdb
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.formClientes.resources
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.nuevoArticulo.resources
+C:\Users\TGarcia\source\repos\programa\programa\obj\Debug\programa.nuevoCliente.resources
