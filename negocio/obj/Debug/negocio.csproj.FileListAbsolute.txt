@@ -1,0 +1,9 @@
+C:\Users\TGarcia\source\repos\programa\negocio\bin\Debug\negocio.dll
+C:\Users\TGarcia\source\repos\programa\negocio\bin\Debug\negocio.pdb
+C:\Users\TGarcia\source\repos\programa\negocio\bin\Debug\dominio.dll
+C:\Users\TGarcia\source\repos\programa\negocio\bin\Debug\dominio.pdb
+C:\Users\TGarcia\source\repos\programa\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\TGarcia\source\repos\programa\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\TGarcia\source\repos\programa\negocio\obj\Debug\negocio.csproj.Up2Date
+C:\Users\TGarcia\source\repos\programa\negocio\obj\Debug\negocio.dll
+C:\Users\TGarcia\source\repos\programa\negocio\obj\Debug\negocio.pdb
