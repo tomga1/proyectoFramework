@@ -7,22 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using dominio;
+using negocio;
 
 namespace programa
 {
     public partial class formClientes : Form
     {
+
+        private List<Cliente> listaClientes;
         public formClientes()
         {
             InitializeComponent();
 
-            listView1.Columns.Add("ID", 50);
-            listView1.Columns.Add("RAZON SOCIAL", 140);
-            listView1.Columns.Add("TELEFONO", 110);
-            listView1.Columns.Add("EMAIL", 70);
-            listView1.Columns.Add("DOMICILIO", 90);
-            listView1.View = View.Details;
         }
+        private void formClientes_Load(object sender, EventArgs e)
+        {
+            clienteNegocio negocio = new clienteNegocio();
+            dgvClientes.DataSource = negocio.listar();
+            //dgvClientes.DataSource = negocio.listarVendedor();
+        }
+
+        public void cargarTabla()
+        {
+            clienteNegocio negocio = new clienteNegocio();
+            listaClientes = negocio.listar();
+            dgvClientes.DataSource = listaClientes;
+
+        }
+
 
         private void botonVolver_Click(object sender, EventArgs e)
         {
@@ -32,8 +45,13 @@ namespace programa
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            nuevoCliente ventana = new nuevoCliente();
+            nuevoCliente ventana = new nuevoCliente(this);
             ventana.ShowDialog();
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
