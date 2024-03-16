@@ -48,5 +48,7 @@ namespace programa
             ventana.MdiParent = this;
             ventana.Show();
         }
+
+        
     }
 }
