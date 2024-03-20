@@ -42,6 +42,7 @@
             this.textBoxURLimagen = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,9 +147,9 @@
             // textBoxURLimagen
             // 
             this.textBoxURLimagen.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxURLimagen.Location = new System.Drawing.Point(108, 116);
+            this.textBoxURLimagen.Location = new System.Drawing.Point(108, 119);
             this.textBoxURLimagen.Name = "textBoxURLimagen";
-            this.textBoxURLimagen.Size = new System.Drawing.Size(168, 20);
+            this.textBoxURLimagen.Size = new System.Drawing.Size(134, 20);
             this.textBoxURLimagen.TabIndex = 4;
             this.textBoxURLimagen.Leave += new System.EventHandler(this.textBoxURLimagen_Leave);
             // 
@@ -156,7 +157,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 119);
+            this.label5.Location = new System.Drawing.Point(20, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 18;
@@ -171,6 +172,17 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(248, 116);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(41, 41);
+            this.button1.TabIndex = 20;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // nuevoArticulo
             // 
             this.AcceptButton = this.botonAgregar;
@@ -178,6 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(433, 253);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxURLimagen);
@@ -196,6 +209,7 @@
             this.Name = "nuevoArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Articulo";
+            this.Load += new System.EventHandler(this.nuevoArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -216,5 +230,6 @@
         private System.Windows.Forms.TextBox textBoxURLimagen;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

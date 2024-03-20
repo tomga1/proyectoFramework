@@ -10,17 +10,27 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using dominio;
 using negocio;
+using System.Runtime.Remoting;
 
 namespace programa
 {
     public partial class nuevoCliente : Form
     {
+        private Cliente cliente = null; 
         formClientes ventanaVieja;
 
         public nuevoCliente(formClientes pantallaVieja)
         {
             ventanaVieja = pantallaVieja;
             InitializeComponent();
+
+        }
+        public nuevoCliente(Cliente cliente)
+        {
+            InitializeComponent();
+            this.cliente = cliente;
+
+            
 
         }
 
@@ -39,11 +49,15 @@ namespace programa
             string razonSocial, email, domicilio;
             int telefono;
 
-            Cliente cli= new Cliente();
+            //Cliente cli= new Cliente();
             clienteNegocio negocio = new clienteNegocio();
             
             try
             {
+                if(cliente == null)
+                {
+                    cliente = new Cliente();
+                }
                 razonSocial = textboxRazonSocial.Text.ToUpper();
                 telefono = int.Parse(textBoxTelefono.Text);
                 string telefonoString = telefono.ToString();
@@ -54,14 +68,31 @@ namespace programa
 
 
 
-                cli.razonsocial = razonSocial;
-                cli.telefono = telefonoString;
-                cli.email = email;
-                cli.domicilio = domicilio;
-                cli.vendedor = vendedor;
+                cliente.razonsocial = razonSocial;
+                cliente.telefono = telefonoString;
+                cliente.email = email;
+                cliente.domicilio = domicilio;
+                cliente.vendedor = vendedor;
                 
 
-                negocio.agregarCliente(cli);
+                if(cliente.id != 0)
+                {
+                    negocio.modificar(cliente);
+                    MessageBox.Show("Articulo modificado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+
+                }
+                else
+                {
+                    negocio.agregarCliente(cliente);
+                    MessageBox.Show("Cliente ingresado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    ventanaVieja.cargarTabla();
+                }
+
+
+
+
+
+                negocio.agregarCliente(cliente);
                 ventanaVieja.cargarTabla();
 
                 textboxRazonSocial.Clear();
@@ -77,7 +108,6 @@ namespace programa
             catch (Exception ex)
             {
                 MessageBox.Show("Ingrese numeros por favor", "-                       TELEFONO", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                MessageBox.Show(ex.Message);
                 textBoxTelefono.Focus();   
                    
             }
@@ -85,18 +115,34 @@ namespace programa
 
         private void nuevoCliente_Load(object sender, EventArgs e)
         {
+            Cliente cliente = new Cliente();    
             clienteNegocio clienteNegocio = new clienteNegocio();
 
             try
             {
+                textboxRazonSocial.Text = cliente.razonsocial;
+                textBoxTelefono.Text = cliente.telefono;    
+                textBoxEmail.Text = cliente.email;
+                textBoxDomicilio.Text = cliente.domicilio;    
                 comboBoxVendedor.DataSource = clienteNegocio.listarVendedor();
                 comboBoxVendedor.DisplayMember = "vendedor";
                 comboBoxVendedor.ValueMember = "id";
+
+
+                if(cliente != null)
+                {
+                    textboxRazonSocial.Text = cliente.razonsocial;
+                    textBoxTelefono.Text = cliente.telefono;    
+                    textBoxEmail.Text = cliente.email;
+                    textBoxDomicilio.Text = cliente.domicilio;
+
+
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
+            }  
         }
     }
 }

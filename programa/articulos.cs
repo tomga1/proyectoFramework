@@ -12,9 +12,11 @@ using negocio;
 
 namespace programa
 {
+
     public partial class formArticulos : Form
     {
         private List<Articulo> listaArticulos;        
+        private Articulo articulo = null;
         public formArticulos()
         {
             InitializeComponent();
@@ -23,8 +25,25 @@ namespace programa
 
         private void formArticulos_Load(object sender, EventArgs e)
         {
+
             cargarTabla();
-            //cargarImagen(listaArticulos[0].UrlImagen);
+            comboBoxCampo.Items.Add("Codigo");
+            comboBoxCampo.Items.Add("Descripcion");
+            comboBoxCampo.Items.Add("Proveedor");
+
+
+            try
+            {
+                if(articulo != null)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public void cargarTabla()
@@ -35,12 +54,18 @@ namespace programa
             {
             listaArticulos = negocio.listar();
             dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["UrlImagen"].Visible = false;
+            ocultarColumnas();  
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["UrlImagen"].Visible = false;
         }
 
 
@@ -53,6 +78,16 @@ namespace programa
         {
             nuevoArticulo ventana = new nuevoArticulo(this);
             ventana.ShowDialog();
+            cargarTabla();
+        }
+        
+        private void botonEditar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            nuevoArticulo modificar = new nuevoArticulo(seleccionado);
+            modificar.ShowDialog();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -86,6 +121,91 @@ namespace programa
 
         }
 
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            articuloNegocio negocio = new articuloNegocio();
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                DialogResult respuesta = MessageBox.Show("Desea eliminar el articulo?", "               ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                
+                if(respuesta == DialogResult.Yes)
+                {
+                    negocio.eliminar(seleccionado.id);
+                    MessageBox.Show("Articulo elimiando con exito ! ", "               ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    cargarTabla();
+                }
+                else { 
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        
+
+        private void textBoxFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = textBoxFiltro.Text;
+
+            if(filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x =>
+                    x.descripcion.Contains(filtro.ToUpper()) ||
+                    x.codigo.Contains(filtro.ToUpper()) ||
+                    x.id.ToString().Contains(filtro.ToUpper()) ||
+                    x.proveedor.Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos; 
+            }
+  
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+
+        }
+
+        private void comboBoxCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = comboBoxCampo.SelectedItem.ToString();
+            if(opcion == "Codigo" || opcion == "Descripcion" || opcion == "Proveedor")
+            {
+                comboBoxCriterio.Items.Clear();
+                comboBoxCriterio.Items.Add("Comienza con");
+                comboBoxCriterio.Items.Add("Termina con");
+                comboBoxCriterio.Items.Add("Contiene");
+            }
+        }
+
+        private void botonFiltro_Click(object sender, EventArgs e)
+        {
+            articuloNegocio negocio = new articuloNegocio();
+            try
+            {
+                string campo = comboBoxCampo.SelectedItem.ToString();
+                string criterio = comboBoxCriterio.SelectedItem.ToString(); 
+                string filtro = textBoxFiltroAvanzado.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio,filtro);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString()); 
+            }
+
+
+        }
+
         
     }
-}
+}   

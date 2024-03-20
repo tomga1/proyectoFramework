@@ -107,5 +107,54 @@ namespace negocio
 
         }
 
+
+        public void modificar(Cliente cli)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update clientes set RazonSocial = @razonsocial, Telefono = @telefono, Email = @email, Domicilio = @domicilio, IdVendedor = @idvendedor where Id = @id");
+                datos.setearParametro("@razonsocial", cli.razonsocial);
+                datos.setearParametro("@telefono", cli.telefono);
+                datos.setearParametro("@email", cli.email);
+                datos.setearParametro("@domicilio", cli.domicilio);
+                datos.setearParametro("@idvendedor", cli.vendedor);
+                datos.setearParametro("@id", cli.vendedor.id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from clientes where Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
     }
 }

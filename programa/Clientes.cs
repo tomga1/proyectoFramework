@@ -16,6 +16,8 @@ namespace programa
     {
 
         private List<Cliente> listaClientes;
+        private Cliente cliente = null;
+        
         public formClientes()
         {
             InitializeComponent();
@@ -30,9 +32,18 @@ namespace programa
 
         public void cargarTabla()
         {
-            clienteNegocio negocio = new clienteNegocio();
-            listaClientes = negocio.listar();
-            dgvClientes.DataSource = listaClientes;
+            try
+            {
+                clienteNegocio negocio = new clienteNegocio();
+                listaClientes = negocio.listar();
+                dgvClientes.DataSource = listaClientes;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
 
         }
 
@@ -47,11 +58,69 @@ namespace programa
         {
             nuevoCliente ventana = new nuevoCliente(this);
             ventana.ShowDialog();
+            cargarTabla();
         }
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void botonEditarCliente_Click(object sender, EventArgs e)
+        {
+            Cliente seleccionado; 
+            seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
+
+            nuevoCliente modificar = new nuevoCliente(seleccionado);
+            modificar.ShowDialog();
+        } 
+        
+
+        private void textBoxFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Cliente> listaFiltrada;
+            string filtro = textBoxFiltroCliente.Text;
+
+
+            if(filtro != "")
+            {
+                listaFiltrada = listaClientes.FindAll(x => x.razonsocial.Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaClientes; 
+            }
+            dgvClientes.DataSource = null;
+            dgvClientes.DataSource = listaFiltrada;
+
+        }
+        private void botonEliminar_Click(object sender, EventArgs e)
+        {
+            clienteNegocio negocio = new clienteNegocio();
+            Cliente seleccionado;
+            try
+            {
+                seleccionado = (Cliente)dgvClientes.CurrentRow.DataBoundItem;
+                DialogResult respuesta = MessageBox.Show("Desea eliminar el articulo?", "               ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.eliminar(seleccionado.id);
+                    MessageBox.Show("Articulo elimiando con exito ! ", "               ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    cargarTabla();
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
+
 }
+
+
+

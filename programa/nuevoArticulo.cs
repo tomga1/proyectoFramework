@@ -9,17 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocio;
+using System.IO;
+using System.Configuration;
+
 
 namespace programa
 {
     public partial class nuevoArticulo : Form
     {
+
+        private Articulo articulo = null;
         formArticulos ventanaVieja;
+
+        private OpenFileDialog archivo = null;
+
+
         public nuevoArticulo(formArticulos pantallaVieja)
         {
             ventanaVieja = pantallaVieja;
             InitializeComponent();
             
+        }
+        public nuevoArticulo(Articulo articulo)
+        {
+            InitializeComponent();
+            this.articulo = articulo;
+            Text = "Editar Articulo";
         }
 
         private void botonEliminar_Click(object sender, EventArgs e)
@@ -27,42 +42,49 @@ namespace programa
             this.Close();
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string codigo, descripcion, proveedor;
-            codigo = textBoxCodigo.Text;
-            descripcion = textBoxDescripcion.Text;
-            proveedor = textBoxProveedor.Text;  
-            MessageBox.Show(codigo);
-            MessageBox.Show(descripcion);
-            MessageBox.Show(proveedor);
-        }
-
         private void botonAgregar_Click(object sender, EventArgs e)
         {
             string codigo, descripcion, proveedor, urlImagen;
             int stock;
 
-
-            Articulo art = new Articulo();
             articuloNegocio negocio = new articuloNegocio();    
             try
             {
+                if(articulo == null)
+                {
+                    articulo = new Articulo();  
+                }
                 codigo = textBoxCodigo.Text.ToUpper();
                 descripcion = textBoxDescripcion.Text.ToUpper();
                 proveedor = textBoxProveedor.Text.ToUpper();
                 stock = int.Parse(textBoxStock.Text);
                 urlImagen = textBoxURLimagen.Text;
 
-                art.codigo = codigo;
-                art.descripcion = descripcion;
-                art.proveedor = proveedor;
-                art.stock = stock;
-                art.UrlImagen = urlImagen;
+                articulo.codigo = codigo;
+                articulo.descripcion = descripcion;
+                articulo.proveedor = proveedor;
+                articulo.stock = stock;
+                articulo.UrlImagen = urlImagen;
 
-                negocio.agregar(art);
-                ventanaVieja.cargarTabla();
+                if(articulo.id !=0 )
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Articulo modificado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    
+                }
+                else
+                {
+                    negocio.agregar(articulo);
+                    MessageBox.Show("Articulo ingresado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    ventanaVieja.cargarTabla();
+
+                }
+                
+                if(archivo != null && (textBoxURLimagen.Text.ToUpper().Contains("HTTP")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+
+                }
 
 
                 textBoxCodigo.Clear();
@@ -70,7 +92,6 @@ namespace programa
                 textBoxProveedor.Clear();
                 textBoxStock.Clear();
                 textBoxURLimagen.Clear();
-                MessageBox.Show("Articulo ingresado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
                 textBoxCodigo.Focus();  
             }
             catch (Exception)
@@ -85,6 +106,7 @@ namespace programa
 
 
         }
+
 
         
         private void textBoxURLimagen_Leave(object sender, EventArgs e)
@@ -103,5 +125,57 @@ namespace programa
             }
         }
 
+        private void nuevoArticulo_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if(articulo != null)
+                {
+                    textBoxCodigo.Text = articulo.codigo;
+                    textBoxDescripcion.Text = articulo.descripcion;
+                    textBoxProveedor.Text = articulo.proveedor;
+                    textBoxStock.Text = articulo.stock.ToString();
+                    textBoxURLimagen.Text = articulo.UrlImagen;
+                    
+                } 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        //private void button1_Click_1(object sender, EventArgs e)
+        //{
+        //    archivo = new OpenFileDialog();
+
+        //    archivo.Filter = "jpg |*.jpg;|png|*.png";
+        //    archivo.ShowDialog();   
+        //    if(archivo.ShowDialog() == DialogResult.OK)
+        //    {
+        //        textBoxURLimagen.Text = archivo.FileName;
+        //        cargarImagen(archivo.FileName);
+
+        //        //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+        //    }
+            
+
+        //}
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+
+            archivo.Filter = "jpg |*.jpg;|png|*.png";
+            archivo.ShowDialog();
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                textBoxURLimagen.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
+
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+            }
+        }
     }
 }
