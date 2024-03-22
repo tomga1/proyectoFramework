@@ -76,13 +76,14 @@
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(120, 77);
             this.botonEliminar.TabIndex = 4;
-            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.Text = "Elimi&nar";
             this.botonEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.botonEliminar.UseVisualStyleBackColor = true;
             this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
             // 
             // botonVolver
             // 
+            this.botonVolver.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonVolver.Image = ((System.Drawing.Image)(resources.GetObject("botonVolver.Image")));
             this.botonVolver.Location = new System.Drawing.Point(2, 12);
             this.botonVolver.Name = "botonVolver";
@@ -95,6 +96,9 @@
             // 
             // dgvClientes
             // 
+            this.dgvClientes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvClientes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClientes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvClientes.Location = new System.Drawing.Point(128, 35);
@@ -103,10 +107,10 @@
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(593, 449);
             this.dgvClientes.TabIndex = 0;
-            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Location = new System.Drawing.Point(735, 35);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(153, 185);
@@ -115,6 +119,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(268, 12);
             this.label1.Name = "label1";
@@ -124,6 +129,7 @@
             // 
             // textBoxFiltroCliente
             // 
+            this.textBoxFiltroCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxFiltroCliente.Location = new System.Drawing.Point(320, 9);
             this.textBoxFiltroCliente.Name = "textBoxFiltroCliente";
             this.textBoxFiltroCliente.Size = new System.Drawing.Size(203, 20);
@@ -132,6 +138,7 @@
             // 
             // botonFiltro
             // 
+            this.botonFiltro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonFiltro.Location = new System.Drawing.Point(529, 7);
             this.botonFiltro.Name = "botonFiltro";
             this.botonFiltro.Size = new System.Drawing.Size(88, 23);

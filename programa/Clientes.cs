@@ -61,10 +61,7 @@ namespace programa
             cargarTabla();
         }
 
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
 
         private void botonEditarCliente_Click(object sender, EventArgs e)
         {

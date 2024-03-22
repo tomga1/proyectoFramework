@@ -17,7 +17,7 @@ namespace negocio
 
 			try
 			{
-				datos.setearConsulta("SELECT c.Id, c.RazonSocial, c.Telefono, c.Email, c.Domicilio, v.Vendedor AS Vendedor FROM clientes c INNER JOIN Vendedor v ON c.IdVendedor = v.Id");
+				datos.setearConsulta("SELECT c.Id, c.RazonSocial, c.Telefono, c.Email, c.Domicilio, v.Vendedor AS Vendedor FROM CLIENTES c INNER JOIN IDVENDEDOR v ON c.IdVendedor = v.Id");
 				datos.ejecutarLectura();
 
 				while (datos.Lector.Read())
@@ -58,8 +58,9 @@ namespace negocio
             try
             {
                 //datos.setearConsulta("insert into articulos(Codigo,Descripcion,Proveedor,Stock) values(" + nuevo.codigo + ",'" + nuevo.descripcion + ",'" + nuevo.proveedor + ",'" + nuevo.stock)";
-                datos.setearConsulta($"insert into clientes(RazonSocial,Telefono, Email, Domicilio, IdVendedor) values('{nuevo.razonsocial}', '{nuevo.telefono}', '{nuevo.email}','{nuevo.domicilio}',{nuevo.vendedor.id})");
+                datos.setearConsulta($"insert into CLIENTES(RazonSocial,Telefono, Email, Domicilio, IdVendedor) values('{nuevo.razonsocial}', '{nuevo.telefono}', '{nuevo.email}','{nuevo.domicilio}',{nuevo.vendedor.id})");
                 datos.ejecutarAccion();
+                listar();
             }
             catch (Exception ex)
             {
@@ -80,7 +81,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("select * from Vendedor");
+                datos.setearConsulta("select * from IDVENDEDOR");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -113,7 +114,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update clientes set RazonSocial = @razonsocial, Telefono = @telefono, Email = @email, Domicilio = @domicilio, IdVendedor = @idvendedor where Id = @id");
+                datos.setearConsulta("update CLIENTES set RazonSocial = @razonsocial, Telefono = @telefono, Email = @email, Domicilio = @domicilio, IdVendedor = @idvendedor where Id = @id");
                 datos.setearParametro("@razonsocial", cli.razonsocial);
                 datos.setearParametro("@telefono", cli.telefono);
                 datos.setearParametro("@email", cli.email);
@@ -140,7 +141,7 @@ namespace negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from clientes where Id = @id");
+                datos.setearConsulta("delete from CLIENTES where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
 

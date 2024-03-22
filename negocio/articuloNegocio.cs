@@ -21,9 +21,9 @@ namespace negocio
 
             try
             {
-                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=proyecto; integrated security=true";
+                conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Id, Codigo, Descripcion, Proveedor, Stock, UrlImagen from articulos";
+                comando.CommandText = "Select Id, Codigo, Nombre, Descripcion, IdMarca  , IdCategoria, ImagenUrl, Precio from ARTICULOS";
                 comando.Connection = conexion;  
 
                 conexion.Open();
@@ -34,11 +34,13 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.id = (int)lector["Id"];
                     aux.codigo = (string)lector["Codigo"];
+                    aux.nombre = (string)lector["Nombre"];
                     aux.descripcion = (string)lector["Descripcion"];
-                    aux.proveedor = (string)lector["Proveedor"];
-                    aux.stock = (int)lector["Stock"];
-                    if (!(lector["UrlImagen"] is DBNull))      
-                        aux.UrlImagen = (string)lector["UrlImagen"];
+                    aux.idmarca = (int)lector["IdMarca"];
+                    aux.idcategoria = (int)lector["IdCategoria"];
+                    aux.precio = (decimal)lector["Precio"];
+                    if (!(lector["ImagenUrl"] is DBNull))      
+                        aux.imagenurl = (string)lector["ImagenUrl"];
 
                     lista.Add(aux);
                 }
@@ -61,7 +63,7 @@ namespace negocio
             try
             {
                 //datos.setearConsulta("insert into articulos(Codigo,Descripcion,Proveedor,Stock) values(" + nuevo.codigo + ",'" + nuevo.descripcion + ",'" + nuevo.proveedor + ",'" + nuevo.stock)";
-                datos.setearConsulta($"insert into articulos(Codigo,Descripcion,Proveedor,Stock, UrlImagen) values('{nuevo.codigo}', '{nuevo.descripcion}', '{nuevo.proveedor}',{nuevo.stock}, '{nuevo.UrlImagen}')");
+                datos.setearConsulta($"insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca, IdCategoria, Precio, ImagenUrl) values('{nuevo.codigo}', '{nuevo.nombre}', '{nuevo.descripcion}', '{nuevo.idmarca}', '{nuevo.idcategoria}',{nuevo.precio}, '{nuevo.imagenurl}')");
                 datos.ejecutarAccion();      
             }
             catch (Exception ex)
@@ -80,12 +82,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update articulos set Codigo = @codigo, Descripcion = @descripcion, Proveedor = @proveedor, Stock = @stock, UrlImagen = @urlimagen where Id = @id");
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, Precio = @precio, ImagenUrl = @imagenurl where Id = @id");
                 datos.setearParametro("@codigo", art.codigo);
+                datos.setearParametro("@nombre", art.nombre);
                 datos.setearParametro("@descripcion", art.descripcion);
-                datos.setearParametro("@proveedor", art.proveedor);
-                datos.setearParametro("@stock", art.stock);
-                datos.setearParametro("@urlimagen", art.UrlImagen);
+                datos.setearParametro("@precio", art.precio);
+                datos.setearParametro("@imagenurl", art.imagenurl);
                 datos.setearParametro("@id", art.id);
 
                 datos.ejecutarAccion();
@@ -106,7 +108,7 @@ namespace negocio
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("delete from articulos where Id = @id");
+                datos.setearConsulta("delete from ARTICULOS where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
                 
@@ -128,7 +130,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "Select Id, Codigo, Descripcion, Proveedor, Stock, UrlImagen from articulos where ";
+                string consulta = "Select Id, Codigo, Nombre, Descripcion, Precio, UrlImagen from articulos where ";
 
 
                 if(campo == "Codigo")
@@ -190,10 +192,10 @@ namespace negocio
                     aux.id = (int)datos.Lector["Id"];
                     aux.codigo = (string)datos.Lector["Codigo"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
-                    aux.proveedor = (string)datos.Lector["Proveedor"];
-                    aux.stock = (int)datos.Lector["Stock"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
+                    //aux.stock = (int)datos.Lector["Stock"];
                     if (!(datos.Lector["UrlImagen"] is DBNull))
-                        aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+                        aux.imagenurl = (string)datos.Lector["UrlImagen"];
 
                     lista.Add(aux);
                 }
@@ -205,6 +207,73 @@ namespace negocio
             }
             
             
+        }
+
+        public List<Marca> ListarMarca()
+        {
+            List<Marca> lista = new List<Marca>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select * from MARCAS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Marca aux = new Marca();
+                    aux.marca = (string)datos.Lector["Descripcion"];
+                    aux.id = (int)datos.Lector["Id"];
+
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        public List<Categoria> ListarCategorias()
+        {
+            List<Categoria> lista = new List<Categoria>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select * from CATEGORIAS");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Categoria aux = new Categoria();
+                    aux.categoria = (string)datos.Lector["Descripcion"];
+                    aux.id = (int)datos.Lector["Id"];
+
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
     }
 }

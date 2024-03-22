@@ -50,8 +50,9 @@
             // 
             // botonVolver
             // 
+            this.botonVolver.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonVolver.Image = ((System.Drawing.Image)(resources.GetObject("botonVolver.Image")));
-            this.botonVolver.Location = new System.Drawing.Point(3, 12);
+            this.botonVolver.Location = new System.Drawing.Point(3, 30);
             this.botonVolver.Name = "botonVolver";
             this.botonVolver.Size = new System.Drawing.Size(120, 77);
             this.botonVolver.TabIndex = 1;
@@ -64,7 +65,7 @@
             // 
             this.botonAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonAgregar.Image = ((System.Drawing.Image)(resources.GetObject("botonAgregar.Image")));
-            this.botonAgregar.Location = new System.Drawing.Point(3, 120);
+            this.botonAgregar.Location = new System.Drawing.Point(3, 131);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(120, 77);
             this.botonAgregar.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             this.botonEditarArticulo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonEditarArticulo.Image = ((System.Drawing.Image)(resources.GetObject("botonEditarArticulo.Image")));
-            this.botonEditarArticulo.Location = new System.Drawing.Point(3, 203);
+            this.botonEditarArticulo.Location = new System.Drawing.Point(3, 214);
             this.botonEditarArticulo.Name = "botonEditarArticulo";
             this.botonEditarArticulo.Size = new System.Drawing.Size(120, 77);
             this.botonEditarArticulo.TabIndex = 3;
@@ -90,39 +91,43 @@
             // 
             this.botonEliminar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonEliminar.Image = ((System.Drawing.Image)(resources.GetObject("botonEliminar.Image")));
-            this.botonEliminar.Location = new System.Drawing.Point(3, 286);
+            this.botonEliminar.Location = new System.Drawing.Point(3, 297);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(120, 77);
             this.botonEliminar.TabIndex = 4;
-            this.botonEliminar.Text = "Eliminar";
+            this.botonEliminar.Text = "Elimi&nar";
             this.botonEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.botonEliminar.UseVisualStyleBackColor = true;
             this.botonEliminar.Click += new System.EventHandler(this.botonEliminar_Click);
             // 
             // dgvArticulos
             // 
+            this.dgvArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvArticulos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvArticulos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvArticulos.Location = new System.Drawing.Point(129, 30);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(593, 403);
+            this.dgvArticulos.Size = new System.Drawing.Size(630, 403);
             this.dgvArticulos.TabIndex = 0;
-            this.dgvArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentClick);
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pictureBoxArticulo
             // 
-            this.pictureBoxArticulo.Location = new System.Drawing.Point(728, 12);
+            this.pictureBoxArticulo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxArticulo.Location = new System.Drawing.Point(765, 30);
             this.pictureBoxArticulo.Name = "pictureBoxArticulo";
-            this.pictureBoxArticulo.Size = new System.Drawing.Size(171, 218);
+            this.pictureBoxArticulo.Size = new System.Drawing.Size(134, 214);
             this.pictureBoxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxArticulo.TabIndex = 5;
             this.pictureBoxArticulo.TabStop = false;
             // 
             // textBoxFiltro
             // 
+            this.textBoxFiltro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxFiltro.Location = new System.Drawing.Point(300, 6);
             this.textBoxFiltro.Name = "textBoxFiltro";
             this.textBoxFiltro.Size = new System.Drawing.Size(281, 20);
@@ -131,6 +136,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(259, 9);
             this.label1.Name = "label1";
@@ -140,6 +146,7 @@
             // 
             // labelCampo
             // 
+            this.labelCampo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCampo.AutoSize = true;
             this.labelCampo.Location = new System.Drawing.Point(125, 443);
             this.labelCampo.Name = "labelCampo";
@@ -149,6 +156,7 @@
             // 
             // labelCriterio
             // 
+            this.labelCriterio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCriterio.AutoSize = true;
             this.labelCriterio.Location = new System.Drawing.Point(307, 443);
             this.labelCriterio.Name = "labelCriterio";
@@ -158,6 +166,7 @@
             // 
             // labelFiltroAvanzado
             // 
+            this.labelFiltroAvanzado.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelFiltroAvanzado.AutoSize = true;
             this.labelFiltroAvanzado.Location = new System.Drawing.Point(489, 443);
             this.labelFiltroAvanzado.Name = "labelFiltroAvanzado";
@@ -167,6 +176,7 @@
             // 
             // comboBoxCampo
             // 
+            this.comboBoxCampo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCampo.FormattingEnabled = true;
             this.comboBoxCampo.Location = new System.Drawing.Point(173, 439);
@@ -177,6 +187,7 @@
             // 
             // comboBoxCriterio
             // 
+            this.comboBoxCriterio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCriterio.FormattingEnabled = true;
             this.comboBoxCriterio.Location = new System.Drawing.Point(355, 439);
@@ -186,6 +197,7 @@
             // 
             // textBoxFiltroAvanzado
             // 
+            this.textBoxFiltroAvanzado.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textBoxFiltroAvanzado.Location = new System.Drawing.Point(537, 439);
             this.textBoxFiltroAvanzado.Name = "textBoxFiltroAvanzado";
             this.textBoxFiltroAvanzado.Size = new System.Drawing.Size(100, 20);
@@ -193,11 +205,12 @@
             // 
             // botonFiltro
             // 
+            this.botonFiltro.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonFiltro.Location = new System.Drawing.Point(650, 438);
             this.botonFiltro.Name = "botonFiltro";
             this.botonFiltro.Size = new System.Drawing.Size(75, 23);
             this.botonFiltro.TabIndex = 23;
-            this.botonFiltro.Text = "Buscar";
+            this.botonFiltro.Text = "&Buscar";
             this.botonFiltro.UseVisualStyleBackColor = true;
             this.botonFiltro.Click += new System.EventHandler(this.botonFiltro_Click);
             // 

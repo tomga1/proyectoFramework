@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace dominio
 {
-    public class Vendedor
+    public class Marca
     {
         public int id { get; set; }
-        public string vendedor { get; set; }
+        public string marca { get; set; }
 
         public override string ToString()
         {
-            return vendedor;
+            return marca;
         }
     }
-
-    
 }

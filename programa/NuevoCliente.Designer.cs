@@ -101,9 +101,9 @@
             // 
             this.botonEliminar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonEliminar.Image = ((System.Drawing.Image)(resources.GetObject("botonEliminar.Image")));
-            this.botonEliminar.Location = new System.Drawing.Point(172, 173);
+            this.botonEliminar.Location = new System.Drawing.Point(167, 180);
             this.botonEliminar.Name = "botonEliminar";
-            this.botonEliminar.Size = new System.Drawing.Size(131, 77);
+            this.botonEliminar.Size = new System.Drawing.Size(108, 61);
             this.botonEliminar.TabIndex = 6;
             this.botonEliminar.Text = "Cancelar";
             this.botonEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -114,9 +114,9 @@
             // 
             this.botonAgregar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.botonAgregar.Image = ((System.Drawing.Image)(resources.GetObject("botonAgregar.Image")));
-            this.botonAgregar.Location = new System.Drawing.Point(12, 173);
+            this.botonAgregar.Location = new System.Drawing.Point(43, 180);
             this.botonAgregar.Name = "botonAgregar";
-            this.botonAgregar.Size = new System.Drawing.Size(131, 77);
+            this.botonAgregar.Size = new System.Drawing.Size(108, 61);
             this.botonAgregar.TabIndex = 5;
             this.botonAgregar.Text = "&Agregar Nuevo";
             this.botonAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

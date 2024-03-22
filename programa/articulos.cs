@@ -65,7 +65,7 @@ namespace programa
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["UrlImagen"].Visible = false;
+            dgvArticulos.Columns["ImagenUrl"].Visible = false;
         }
 
 
@@ -93,7 +93,7 @@ namespace programa
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            cargarImagen(seleccionado.UrlImagen);
+            cargarImagen(seleccionado.imagenurl);
         }
 
         private void cargarImagen(string imagen)
@@ -116,10 +116,7 @@ namespace programa
             }
         }
 
-        private void dgvArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
 
         private void botonEliminar_Click(object sender, EventArgs e)
         {
@@ -160,8 +157,7 @@ namespace programa
                 listaFiltrada = listaArticulos.FindAll(x =>
                     x.descripcion.Contains(filtro.ToUpper()) ||
                     x.codigo.Contains(filtro.ToUpper()) ||
-                    x.id.ToString().Contains(filtro.ToUpper()) ||
-                    x.proveedor.Contains(filtro.ToUpper()));
+                    x.nombre.Contains(filtro.ToUpper()));
             }
             else
             {

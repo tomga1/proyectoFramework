@@ -44,8 +44,9 @@ namespace programa
 
         private void botonAgregar_Click(object sender, EventArgs e)
         {
-            string codigo, descripcion, proveedor, urlImagen;
-            int stock;
+            string codigo, nombre, descripcion, urlImagen;
+            decimal precio;
+            int idmarca, idcategoria;
 
             articuloNegocio negocio = new articuloNegocio();    
             try
@@ -55,16 +56,24 @@ namespace programa
                     articulo = new Articulo();  
                 }
                 codigo = textBoxCodigo.Text.ToUpper();
+                nombre = textBoxNombre.Text.ToUpper();
                 descripcion = textBoxDescripcion.Text.ToUpper();
-                proveedor = textBoxProveedor.Text.ToUpper();
-                stock = int.Parse(textBoxStock.Text);
-                urlImagen = textBoxURLimagen.Text;
+                idmarca = (int)comboBoxMarca.SelectedValue;
+                idcategoria = (int)comboBoxCategoria.SelectedValue;
+                urlImagen = textBoxImagenUrl.Text;
+                precio = decimal.Parse(textPrecio.Text.ToUpper());
+                //articulo.idmarca = (int)comboBoxMarca.SelectedValue;
+                //articulo.idcategoria = (int)comboBoxCategoria.SelectedValue;
+                //articulo.idmarca = (int)comboBoxMarca.SelectedValue;
+                //articulo.idcategoria = (int)comboBoxCategoria.SelectedValue;
 
                 articulo.codigo = codigo;
+                articulo.nombre = nombre;
                 articulo.descripcion = descripcion;
-                articulo.proveedor = proveedor;
-                articulo.stock = stock;
-                articulo.UrlImagen = urlImagen;
+                articulo.precio = precio;
+                articulo.imagenurl = urlImagen;
+                articulo.idmarca = idmarca;
+                articulo.idcategoria = idcategoria;
 
                 if(articulo.id !=0 )
                 {
@@ -80,7 +89,7 @@ namespace programa
 
                 }
                 
-                if(archivo != null && (textBoxURLimagen.Text.ToUpper().Contains("HTTP")))
+                if(archivo != null && (textBoxImagenUrl.Text.ToUpper().Contains("HTTP")))
                 {
                     File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
 
@@ -88,17 +97,17 @@ namespace programa
 
 
                 textBoxCodigo.Clear();
+                textBoxNombre.Clear();
                 textBoxDescripcion.Clear();
-                textBoxProveedor.Clear();
-                textBoxStock.Clear();
-                textBoxURLimagen.Clear();
+                textPrecio.Clear();
+                textBoxImagenUrl.Clear();
                 textBoxCodigo.Focus();  
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Ingrese numeros por favor", "-                           STOCK", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                textBoxStock.Focus();
+                MessageBox.Show("Ingrese numeros por favor", "-                           PRECIO", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                textPrecio.Focus();
             }
 
 
@@ -111,7 +120,7 @@ namespace programa
         
         private void textBoxURLimagen_Leave(object sender, EventArgs e)
         {
-            cargarImagen(textBoxURLimagen.Text);
+            cargarImagen(textBoxImagenUrl.Text);
         }
         private void cargarImagen(string imagen)
         {
@@ -127,16 +136,24 @@ namespace programa
 
         private void nuevoArticulo_Load(object sender, EventArgs e)
         {
+            Articulo articulo = new Articulo();
+            articuloNegocio articuloNegocio = new articuloNegocio();
+
             try
             {
                 if(articulo != null)
                 {
                     textBoxCodigo.Text = articulo.codigo;
+                    textBoxNombre.Text = articulo.nombre;
                     textBoxDescripcion.Text = articulo.descripcion;
-                    textBoxProveedor.Text = articulo.proveedor;
-                    textBoxStock.Text = articulo.stock.ToString();
-                    textBoxURLimagen.Text = articulo.UrlImagen;
-                    
+                    textPrecio.Text = articulo.precio.ToString();
+                    textBoxImagenUrl.Text = articulo.imagenurl;
+                    comboBoxMarca.DataSource = articuloNegocio.ListarMarca();
+                    comboBoxMarca.DisplayMember = "marca";
+                    comboBoxMarca.ValueMember = "id";
+                    comboBoxCategoria.DataSource = articuloNegocio.ListarCategorias();
+                    comboBoxCategoria.DisplayMember = "categoria";
+                    comboBoxCategoria.ValueMember = "id";
                 } 
             }
             catch (Exception ex)
@@ -171,7 +188,7 @@ namespace programa
             archivo.ShowDialog();
             if (archivo.ShowDialog() == DialogResult.OK)
             {
-                textBoxURLimagen.Text = archivo.FileName;
+                textBoxImagenUrl.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
 
                 //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);

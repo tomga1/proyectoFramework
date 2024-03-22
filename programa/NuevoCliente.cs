@@ -92,7 +92,7 @@ namespace programa
 
 
 
-                negocio.agregarCliente(cliente);
+                //negocio.agregarCliente(cliente);
                 ventanaVieja.cargarTabla();
 
                 textboxRazonSocial.Clear();
@@ -100,7 +100,7 @@ namespace programa
                 textBoxEmail.Clear();
                 textBoxDomicilio.Clear();
                    
-                MessageBox.Show("Cliente ingresado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                //MessageBox.Show("Cliente ingresado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
                 textboxRazonSocial.Focus(); 
 
 
@@ -144,5 +144,7 @@ namespace programa
                 MessageBox.Show(ex.ToString());
             }  
         }
+
+       
     }
 }
