@@ -33,7 +33,7 @@ namespace programa
         public nuevoArticulo(Articulo articulo)
         {
             InitializeComponent();
-            this.articulo = articulo;
+            this.articulo = articulo;  
             Text = "Editar Articulo";
         }
 
@@ -77,8 +77,9 @@ namespace programa
 
                 if(articulo.id !=0 )
                 {
-                    negocio.modificar(articulo);
+                    negocio.modificar(articulo); 
                     MessageBox.Show("Articulo modificado con exito!", "                 EXCELENTE!", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    
                     
                 }
                 else
@@ -136,11 +137,17 @@ namespace programa
 
         private void nuevoArticulo_Load(object sender, EventArgs e)
         {
-            Articulo articulo = new Articulo();
             articuloNegocio articuloNegocio = new articuloNegocio();
+            //Articulo articulo = new Articulo();
 
             try
             {
+                    comboBoxMarca.DataSource = articuloNegocio.ListarMarca();
+                    comboBoxMarca.DisplayMember = "marca";
+                    comboBoxMarca.ValueMember = "id";
+                    comboBoxCategoria.DataSource = articuloNegocio.ListarCategorias();
+                    comboBoxCategoria.DisplayMember = "categoria";
+                    comboBoxCategoria.ValueMember = "id";
                 if(articulo != null)
                 {
                     textBoxCodigo.Text = articulo.codigo;
@@ -148,12 +155,6 @@ namespace programa
                     textBoxDescripcion.Text = articulo.descripcion;
                     textPrecio.Text = articulo.precio.ToString();
                     textBoxImagenUrl.Text = articulo.imagenurl;
-                    comboBoxMarca.DataSource = articuloNegocio.ListarMarca();
-                    comboBoxMarca.DisplayMember = "marca";
-                    comboBoxMarca.ValueMember = "id";
-                    comboBoxCategoria.DataSource = articuloNegocio.ListarCategorias();
-                    comboBoxCategoria.DisplayMember = "categoria";
-                    comboBoxCategoria.ValueMember = "id";
                 } 
             }
             catch (Exception ex)
@@ -194,5 +195,7 @@ namespace programa
                 //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
             }
         }
+
+       
     }
 }

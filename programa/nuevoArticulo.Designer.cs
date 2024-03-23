@@ -57,7 +57,7 @@
             this.botonEliminar.Location = new System.Drawing.Point(231, 190);
             this.botonEliminar.Name = "botonEliminar";
             this.botonEliminar.Size = new System.Drawing.Size(108, 61);
-            this.botonEliminar.TabIndex = 6;
+            this.botonEliminar.TabIndex = 9;
             this.botonEliminar.Text = "&Cancelar";
             this.botonEliminar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.botonEliminar.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             this.botonAgregar.Location = new System.Drawing.Point(97, 190);
             this.botonAgregar.Name = "botonAgregar";
             this.botonAgregar.Size = new System.Drawing.Size(108, 61);
-            this.botonAgregar.TabIndex = 5;
+            this.botonAgregar.TabIndex = 8;
             this.botonAgregar.Text = "&Aceptar";
             this.botonAgregar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.botonAgregar.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             this.button1.Location = new System.Drawing.Point(242, 109);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 24);
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 5;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
@@ -196,7 +196,7 @@
             this.comboBoxMarca.Location = new System.Drawing.Point(108, 138);
             this.comboBoxMarca.Name = "comboBoxMarca";
             this.comboBoxMarca.Size = new System.Drawing.Size(128, 21);
-            this.comboBoxMarca.TabIndex = 21;
+            this.comboBoxMarca.TabIndex = 6;
             // 
             // comboBoxCategoria
             // 
@@ -205,7 +205,7 @@
             this.comboBoxCategoria.Location = new System.Drawing.Point(108, 163);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
             this.comboBoxCategoria.Size = new System.Drawing.Size(128, 21);
-            this.comboBoxCategoria.TabIndex = 22;
+            this.comboBoxCategoria.TabIndex = 7;
             // 
             // label6
             // 
