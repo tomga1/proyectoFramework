@@ -23,7 +23,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Id, Codigo, Nombre, Descripcion, IdMarca  , IdCategoria, ImagenUrl, Precio from ARTICULOS";
+                comando.CommandText = "SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.ImagenUrl, a.Precio, m.Descripcion AS Marcas, c.Descripcion AS Categorias FROM ARTICULOS a INNER JOIN MARCAS m ON a.IdMarca = m.Id INNER JOIN CATEGORIAS c ON a.IdCategoria = c.Id";
                 comando.Connection = conexion;  
 
                 conexion.Open();
@@ -36,11 +36,21 @@ namespace negocio
                     aux.codigo = (string)lector["Codigo"];
                     aux.nombre = (string)lector["Nombre"];
                     aux.descripcion = (string)lector["Descripcion"];
-                    aux.idmarca = (int)lector["IdMarca"];
-                    aux.idcategoria = (int)lector["IdCategoria"];
                     aux.precio = (decimal)lector["Precio"];
-                    if (!(lector["ImagenUrl"] is DBNull))      
+                    if (!(lector["ImagenUrl"] is DBNull))
                         aux.imagenurl = (string)lector["ImagenUrl"];
+
+                    Marca marca = new Marca();  
+                    marca.marca = (string)lector["Marcas"];
+                    marca.id = (int)lector["Id"];
+                    aux.marca = marca; 
+                    
+                    
+                    Categoria categoria = new Categoria();
+                    categoria.categoria = (string)lector["Categorias"];
+                    categoria.id = (int)lector["Id"];
+                    aux.categoria = categoria; 
+                    //aux.categoria = (string)lector["Categorias"];
 
                     lista.Add(aux);
                 }

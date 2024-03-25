@@ -164,22 +164,22 @@ namespace programa
             }
         }
 
-        //private void button1_Click_1(object sender, EventArgs e)
-        //{
-        //    archivo = new OpenFileDialog();
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
 
-        //    archivo.Filter = "jpg |*.jpg;|png|*.png";
-        //    archivo.ShowDialog();   
-        //    if(archivo.ShowDialog() == DialogResult.OK)
-        //    {
-        //        textBoxURLimagen.Text = archivo.FileName;
-        //        cargarImagen(archivo.FileName);
+            archivo.Filter = "jpg |*.jpg;|png|*.png";
+            archivo.ShowDialog();   
+            if(archivo.ShowDialog() == DialogResult.OK)
+            {
+                textBoxImagenUrl.Text = archivo.FileName;
+                cargarImagen(archivo.FileName);
 
-        //        //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
-        //    }
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+            }
             
 
-        //}
+        }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
@@ -196,6 +196,6 @@ namespace programa
             }
         }
 
-       
+        
     }
 }

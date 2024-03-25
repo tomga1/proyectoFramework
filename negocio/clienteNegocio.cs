@@ -28,6 +28,7 @@ namespace negocio
                     aux.telefono = (string)datos.Lector["Telefono"];
                     aux.email = (string)datos.Lector["Email"];
                     aux.domicilio = (string)datos.Lector["Domicilio"];
+
                     Vendedor vendedor = new Vendedor();
                     vendedor.vendedor = (string)datos.Lector["Vendedor"];
                     vendedor.id = (int)datos.Lector["Id"];

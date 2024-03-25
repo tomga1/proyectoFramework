@@ -25,7 +25,8 @@ namespace programa
 
         private void formArticulos_Load(object sender, EventArgs e)
         {
-
+            articuloNegocio negocio = new articuloNegocio();
+            dgvArticulos.DataSource = negocio.listar();
             cargarTabla();
             comboBoxCampo.Items.Add("Codigo");
             comboBoxCampo.Items.Add("Descripcion");
@@ -66,6 +67,8 @@ namespace programa
         private void ocultarColumnas()
         {
             dgvArticulos.Columns["ImagenUrl"].Visible = false;
+            dgvArticulos.Columns["idmarca"].Visible = false;
+            dgvArticulos.Columns["idcategoria"].Visible = false;
         }
 
 
