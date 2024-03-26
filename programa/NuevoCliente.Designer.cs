@@ -143,6 +143,7 @@
             // 
             // labelVendedor
             // 
+            this.labelVendedor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelVendedor.AutoSize = true;
             this.labelVendedor.Location = new System.Drawing.Point(12, 110);
             this.labelVendedor.Name = "labelVendedor";
@@ -152,6 +153,7 @@
             // 
             // comboBoxVendedor
             // 
+            this.comboBoxVendedor.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxVendedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxVendedor.FormattingEnabled = true;
             this.comboBoxVendedor.Location = new System.Drawing.Point(107, 107);

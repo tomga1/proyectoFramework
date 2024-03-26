@@ -191,6 +191,7 @@
             // 
             // comboBoxMarca
             // 
+            this.comboBoxMarca.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMarca.FormattingEnabled = true;
             this.comboBoxMarca.Location = new System.Drawing.Point(108, 138);
@@ -200,6 +201,7 @@
             // 
             // comboBoxCategoria
             // 
+            this.comboBoxCategoria.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategoria.FormattingEnabled = true;
             this.comboBoxCategoria.Location = new System.Drawing.Point(108, 163);

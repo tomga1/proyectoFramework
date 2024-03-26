@@ -21,20 +21,22 @@ namespace programa
         public formClientes()
         {
             InitializeComponent();
+            
 
         }
         private void formClientes_Load(object sender, EventArgs e)
         {
             clienteNegocio negocio = new clienteNegocio();
             dgvClientes.DataSource = negocio.listar();
+            cargarTabla();
             //dgvClientes.DataSource = negocio.listarVendedor();
         }
 
         public void cargarTabla()
         {
+                clienteNegocio negocio = new clienteNegocio();
             try
             {
-                clienteNegocio negocio = new clienteNegocio();
                 listaClientes = negocio.listar();
                 dgvClientes.DataSource = listaClientes;
 
@@ -77,16 +79,22 @@ namespace programa
         {
             List<Cliente> listaFiltrada;
             string filtro = textBoxFiltroCliente.Text;
-
+             
 
             if(filtro != "")
             {
-                listaFiltrada = listaClientes.FindAll(x => x.razonsocial.Contains(filtro.ToUpper()));
+
+            listaFiltrada = listaClientes.FindAll(x =>
+                    x.razonsocial.Contains(filtro.ToUpper()) ||
+                    x.email.Contains(filtro.ToUpper()));
             }
             else
             {
                 listaFiltrada = listaClientes; 
             }
+
+
+           
             dgvClientes.DataSource = null;
             dgvClientes.DataSource = listaFiltrada;
 
@@ -115,6 +123,8 @@ namespace programa
                 MessageBox.Show(ex.ToString());
             }
         }
+
+       
     }
 
 }
