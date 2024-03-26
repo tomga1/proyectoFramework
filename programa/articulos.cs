@@ -29,8 +29,8 @@ namespace programa
             dgvArticulos.DataSource = negocio.listar();
             cargarTabla();
             comboBoxCampo.Items.Add("Codigo");
+            comboBoxCampo.Items.Add("Nombre");
             comboBoxCampo.Items.Add("Descripcion");
-            comboBoxCampo.Items.Add("Proveedor");
 
 
             try
@@ -176,7 +176,7 @@ namespace programa
         private void comboBoxCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
             string opcion = comboBoxCampo.SelectedItem.ToString();
-            if(opcion == "Codigo" || opcion == "Descripcion" || opcion == "Proveedor")
+            if(opcion == "Codigo" || opcion == "Nombre" || opcion == "Descripcion")
             {
                 comboBoxCriterio.Items.Clear();
                 comboBoxCriterio.Items.Add("Comienza con");

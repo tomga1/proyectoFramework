@@ -52,6 +52,7 @@ namespace negocio
                     aux.categoria = categoria; 
                     //aux.categoria = (string)lector["Categorias"];
 
+                   
                     lista.Add(aux);
                 }
                 return lista;
@@ -140,7 +141,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "Select Id, Codigo, Nombre, Descripcion, Precio, UrlImagen from articulos where ";
+                string consulta = "Select Id, Codigo, Nombre, Descripcion,IdMarca, IdCategoria, ImagenUrl, Precio from ARTICULOS where ";
 
 
                 if(campo == "Codigo")
@@ -159,11 +160,27 @@ namespace negocio
                             break;  
                     }
                 }
-                else if(campo == "Descripcion")
+                else if(campo == "Nombre")
                 {
                     switch (criterio)
                     {
 
+                        case "Comienza con":
+                            consulta += "Nombre like '" + filtro + "%'   ";
+                            break;
+
+                        case "Termina con":
+                            consulta += "Nombre like  '%" + filtro + "'";
+                            break;
+                        default:
+                            consulta += "Nombre like '%" + filtro + "%'";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch(criterio)
+                    {
                         case "Comienza con":
                             consulta += "Descripcion like '" + filtro + "%'   ";
                             break;
@@ -173,22 +190,6 @@ namespace negocio
                             break;
                         default:
                             consulta += "Descripcion like '%" + filtro + "%'";
-                            break;
-                    }
-                }
-                else
-                {
-                    switch(criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "Proveedor like '" + filtro + "%'   ";
-                            break;
-
-                        case "Termina con":
-                            consulta += "Proveedor like  '%" + filtro + "'";
-                            break;
-                        default:
-                            consulta += "Proveedor like '%" + filtro + "%'";
                             break;
                     }
 
@@ -201,11 +202,13 @@ namespace negocio
                     Articulo aux = new Articulo();
                     aux.id = (int)datos.Lector["Id"];
                     aux.codigo = (string)datos.Lector["Codigo"];
+                    aux.nombre = (string)datos.Lector["Nombre"];
                     aux.descripcion = (string)datos.Lector["Descripcion"];
-                    aux.precio = (decimal)datos.Lector["Precio"];
+                    //aux.descripcion = (string)datos.Lector["IdCategoria"];  
                     //aux.stock = (int)datos.Lector["Stock"];
-                    if (!(datos.Lector["UrlImagen"] is DBNull))
-                        aux.imagenurl = (string)datos.Lector["UrlImagen"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.imagenurl = (string)datos.Lector["ImagenUrl"];
+                    aux.precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
                 }

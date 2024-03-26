@@ -155,6 +155,7 @@ namespace programa
                     textBoxDescripcion.Text = articulo.descripcion;
                     textPrecio.Text = articulo.precio.ToString();
                     textBoxImagenUrl.Text = articulo.imagenurl;
+                    cargarImagen(articulo.imagenurl);
                 } 
             }
             catch (Exception ex)
