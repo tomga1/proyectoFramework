@@ -109,7 +109,6 @@ namespace programa
                 }
                 else
                 {
-                    // Si la ruta de la imagen está vacía o nula, cargar una imagen predeterminada
                     pictureBoxArticulo.ImageLocation = "https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg";
                 }
             }
