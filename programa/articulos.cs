@@ -188,11 +188,14 @@ namespace programa
         {
             articuloNegocio negocio = new articuloNegocio();
             try
-            {
-                string campo = comboBoxCampo.SelectedItem.ToString();
-                string criterio = comboBoxCriterio.SelectedItem.ToString(); 
-                string filtro = textBoxFiltroAvanzado.Text;
-                dgvArticulos.DataSource = negocio.filtrar(campo, criterio,filtro);
+            {         
+                if (comboBoxCampo.SelectedIndex != -1 && comboBoxCriterio.SelectedIndex != -1)
+                {
+                    string campo = comboBoxCampo.SelectedItem.ToString();
+                    string criterio = comboBoxCriterio.SelectedItem.ToString();
+                    string filtro = textBoxFiltroAvanzado.Text;
+                    dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                }
 
             }
             catch (Exception ex)

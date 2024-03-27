@@ -55,6 +55,13 @@ namespace programa
                 {
                     articulo = new Articulo();  
                 }
+                if (string.IsNullOrEmpty(textBoxNombre.Text))
+                {
+                    MessageBox.Show("Ingrese un nombre por favor", "-                           NOMBRE", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    textBoxNombre.Focus();
+                    return;
+                }
+
                 codigo = textBoxCodigo.Text.ToUpper();
                 nombre = textBoxNombre.Text.ToUpper();
                 descripcion = textBoxDescripcion.Text.ToUpper();
@@ -62,11 +69,7 @@ namespace programa
                 idcategoria = (int)comboBoxCategoria.SelectedValue;
                 urlImagen = textBoxImagenUrl.Text;
                 precio = decimal.Parse(textPrecio.Text.ToUpper());
-                //articulo.idmarca = (int)comboBoxMarca.SelectedValue;
-                //articulo.idcategoria = (int)comboBoxCategoria.SelectedValue;
-                //articulo.idmarca = (int)comboBoxMarca.SelectedValue;
-                //articulo.idcategoria = (int)comboBoxCategoria.SelectedValue;
-
+              
                 articulo.codigo = codigo;
                 articulo.nombre = nombre;
                 articulo.descripcion = descripcion;
